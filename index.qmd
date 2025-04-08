@@ -1,10 +1,10 @@
 ---
-title: "oceminsky.github.io"
+title: "Olivia Ceminsky"
+about: 
+  template: jolla
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+My name is Olivia Ceminsky, and I am a junior Psychology major at St. Olaf College. I am taking SDS 264 this spring. 
 
 ```{r}
 1 + 1

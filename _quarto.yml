@@ -3,18 +3,22 @@ project:
   output-dir: docs
 
 website:
-  title: "oceminsky.github.io"
+  title: "Olivia Ceminsky"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      - resources.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: yeti
+      dark: superhero
     css: styles.css
     toc: true
+    page-layout: full
 
 editor: visual
 

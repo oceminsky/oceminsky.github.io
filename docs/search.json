@@ -1,16 +1,23 @@
 [
   {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "resources",
+    "section": "",
+    "text": "This is my demo."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Olivia Ceminsky",
+    "section": "",
+    "text": "My name is Olivia Ceminsky, and I am a junior Psychology major at St. Olaf College. I am taking SDS 264 this spring.\n\n1 + 1\n\n[1] 2"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "oceminsky.github.io",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   }
 ]
