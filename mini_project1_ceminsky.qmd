@@ -1,0 +1,267 @@
+---
+title: "Mini Project 1"
+sidebar: false
+format:
+  html: 
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+library(statebins)
+library(mdsr) 
+library(sf)
+library(maps)
+library(leaflet)
+library(htmltools)
+library(glue)
+library(RColorBrewer)
+
+causes_of_death <- read_csv("~/Documents/SDS264/Leading_Causes_of_Death_US.csv")
+states_sf <- read_sf("https://rstudio.github.io/leaflet/json/us-states.geojson")
+```
+## Introduction
+
+The data used for this project comes from the Center for Disease Control (CDC) and the National Center for Health Statistics (NCHS). It can be accessed at this link (https://healthdata.gov/d/nxxk-8p52).
+
+**Preparing datasets for joining**
+
+```{r}
+#Selecting the necessary columns for mapping
+
+states_polygon <- as_tibble(map_data("state")) |>
+  select(region, group, order, lat, long) 
+
+#Mutating state name to be lowercase so it can be joined with states_polygon
+
+causes_of_death_lower <- causes_of_death |>
+  mutate(State = str_to_lower(State))
+```
+
+**Creating Total Number of Deaths dataframe and Joins**
+
+```{r}
+
+#Calculating the total number of deaths in 2017 for each state
+
+death_total <- causes_of_death_lower |>
+  rename(cause = "Cause Name", 
+         state = State, 
+         deaths = Deaths) |>
+  filter(Year == "2017", 
+         cause == "All causes") |>
+  filter(state != "United States") |>
+  select(deaths, state)
+
+#Joining states_polygon with death_total for total deaths per state plot
+
+death_total_polygon <- states_polygon |>
+  left_join(death_total, by = c("region" = "state"))
+```
+
+## Total Deaths Static Plot
+
+```{r}
+#Creates a map showing the total number of deaths per state
+
+death_total_polygon |>
+  ggplot(aes(x = long, y = lat,
+                          group = group)) + 
+  geom_polygon(aes(fill = deaths), colour = "white", linetype = 1) +
+  scale_fill_viridis_c() +
+  labs(
+    title = "Total Deaths per State in 2017 is related to State Population",
+    fill = "Number of Deaths",
+    x = "Longitude",
+    y = "Latitude",
+    caption = "Data Source: CDC/NCHS (https://healthdata.gov/d/nxxk-8p52)"
+  )
+```
+
+Alt text: This choropleth map shows the total number of deaths per state in 2017. The map of the United States is plotted on a grid with longitude plotted on the x-axis, ranging from -125 to -65, and latitude on the y-axis ranging from 25 to 50. States are colored on a scale, ranging from dark purple to yellow, based on their total number of deaths. Number of deaths range from 0, which is depicted by a dark purple, to 250000 deaths, which is a bright yellow color. States that have larger populations, such as California, have higher total deaths than states with smaller populations, such as North Dakota. Overall, this trend shows that states with larger populations tend to have a higher total number of deaths because as population increases, number of deaths also proportionally increases.
+
+**Manipulating data and joins**
+
+```{r}
+#| warning: false
+sf_use_s2(FALSE)
+
+#Creates a dataframe with total number of deaths by state for join with states_sf
+
+death_total_upper <- causes_of_death |>
+  rename(cause = "Cause Name", 
+         state = State, 
+         deaths = Deaths) |>
+  filter(Year == "2017", 
+         cause == "All causes") |>
+  filter(state != "United States") |>
+  select(deaths, state)
+
+#Joins the states_sf dataset  with the death_total_upper dataframe to find total number of deaths by state in an interactive map
+
+death_total_sf <- states_sf |>
+  filter(!(name %in% c("Alaska", "Hawaii", "Puerto Rico"))) |>
+  left_join(death_total_upper, by = c("name" = "state"))
+
+```
+
+## Interactive map of Total Deaths
+
+```{r}
+#Creates labels that can be used in an interactive plot
+
+death_total_sf <- death_total_sf |>
+  mutate(labels = str_c(name, ": ", deaths, " deaths"))
+        
+labels_total <- lapply(death_total_sf$labels, HTML)
+
+#Creates bins and a color palette to be used in the interactive map
+
+bins <- c(0, 10000, 20000, 50000, 100000, 150000, 200000, 250000, Inf)
+pal <- colorBin("viridis", domain = death_total_sf$deaths, bins = bins)
+
+#Creates the interactive map of the total number of deaths by state
+
+leaflet(death_total_sf) |>
+  setView(-96, 37.8, 4) |>
+  addTiles() |>
+  addPolygons(
+    fillColor = ~pal(deaths),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "1",
+    fillOpacity = 0.7,
+    highlightOptions = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE),
+    label = labels_total,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")) |>
+  addLegend(pal = pal, values = ~deaths, opacity = 0.7, title = NULL,
+    position = "bottomright")
+```
+
+**Causes of Death dataframe and joins**
+
+```{r}
+#| warning: false
+#Creates a dataframe finding the most common cause of death by state in 2017
+
+death_order_lower <- causes_of_death_lower |>
+  rename(cause = "Cause Name", 
+         state = State,
+         death = Deaths) |>
+  filter(Year == 2017, 
+         cause != "All causes", 
+         state != "united states") |>
+  group_by(state, cause) |>
+  summarize(total_deaths = sum(death, na.rm = TRUE)) |>
+  group_by(state) |>
+  slice_max(total_deaths, n = 1) |>
+  ungroup()
+
+#Joins the states_polygon mapping dataset with the death_order_lower dataframe created about leading cause of death
+
+death_order_polygon <- states_polygon |>
+  left_join(death_order_lower, by = c("region" = "state"))
+
+```
+
+## Static plot of Leading cause of death by state
+
+```{r}
+
+#Creates static map of the leading cause of death in 2017 by state
+
+death_order_polygon |>
+  ggplot(aes(x = long, y = lat,
+                          group = group)) + 
+  geom_polygon(aes(fill = cause), colour = "black", linetype = 1) +
+  scale_fill_brewer() +
+    labs(
+      title = "The Leading Cause of Death by State in 2017 is \n Predominantly Heart Disease",
+      x = "Longitude",
+      y = "Latitude",
+      fill = "Cause",
+      caption = "Data Source: CDC/NCHS (https://healthdata.gov/d/nxxk-8p52)"
+      )
+```
+
+This choropleth map shows the most common cause of death in each state for 2017. The most common cause of death across the US is heart disease, with a majority of states reporting heart disease as its leading cause of death. The second most common leading cause of death is cancer, with about 11 states reporting cancer as causing the highest number of deaths. These are the only two causes of death that are the leading causes in a state.
+
+**Creating dataframe used in interactive plot for Leading Cause of Death**
+
+```{r}
+#| warning: false
+#Creates dataframe with most common cause of death by state for join with states_sf
+
+death_order <- causes_of_death |>
+  rename(cause = "Cause Name", 
+         state = State,
+         death = Deaths) |>
+  filter(Year == 2017, 
+         cause != "All causes", 
+         state != "United States") |>
+  group_by(state, cause) |>
+  summarize(total_deaths = sum(death, na.rm = TRUE)) |>
+  group_by(state) |>
+  slice_max(total_deaths, n = 1) |>
+  ungroup()
+
+#Joins states_sf with the death_order dataframe created
+
+death_order_sf <- states_sf |>
+  filter(!(name %in% c("Alaska", "Hawaii", "Puerto Rico"))) |>
+  left_join(death_order, by = c("name" = "state"))
+
+```
+
+## Interactive Map of Leading Cause of Death by State
+
+```{r}
+#Creates and formats labels that will be used in the interactive map
+
+death_order_sf <- death_order_sf |>
+  mutate(labels_order = str_c(name, ": ", cause, " is the leading cause of death"))
+
+labels_order <- lapply(death_order_sf$labels_order, HTML)
+
+#Creates color palette used in the interactive map
+
+pal_order <- colorFactor(palette = "Greens", domain = death_order_sf$cause)
+
+#Creates interactive map of the leading cause of death by state in 2017
+
+leaflet(death_order_sf) |>
+  setView(-96, 37.8, 4) |>
+  addTiles() |>
+  addPolygons(
+    fillColor = ~pal_order(cause),
+    weight = 2,
+    opacity = 1,
+    color = "black",
+    dashArray = "1",
+    fillOpacity = 0.8,
+    highlightOptions = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE),
+    label = labels_order,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")) |>
+  addLegend(pal = pal_order, values = ~cause, opacity = 0.7, title = NULL,
+    position = "bottomright")
+```

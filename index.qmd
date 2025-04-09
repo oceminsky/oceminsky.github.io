@@ -1,11 +1,17 @@
 ---
 title: "Olivia Ceminsky"
+image: headshot.jpg
 about: 
   template: jolla
+  image-shape: round
+  image-width: 17em
+  links: 
+    - text: GitHub
+      href: https://github.com/oceminsky
+    - text: Email
+      href: mailto:cemins2@stolaf.edu
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/olivia-ceminsky-54352a344/
 ---
 
-My name is Olivia Ceminsky, and I am a junior Psychology major at St. Olaf College. I am taking SDS 264 this spring. 
-
-```{r}
-1 + 1
-```
+My name is Olivia Ceminsky, and I am a junior at St. Olaf College studying Psychology with a concentration in International Relations. I am taking Data Science 2 this spring. 

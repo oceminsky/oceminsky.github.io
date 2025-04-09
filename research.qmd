@@ -1,0 +1,10 @@
+---
+title: "Research"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+I am involved in research at St. Olaf with Dr. Piercarlo Valdesolo, a psychology professor specializing in emotions research. Our current project examines the feelings of gratitude that immigrants have and feel they ought to have toward their country of resettlement. 
+
+![We prepared this research poster to be presented at MPA in Chicago this spring.](Research_psychology_poster.jpg)
