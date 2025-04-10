@@ -1,5 +1,5 @@
 ---
-title: "Mini Project 2"
+title: "Table Scraping Acquisition"
 author: "Olivia Ceminsky and Rachael Olson"
 format:
   html: default
@@ -20,9 +20,9 @@ library(rvest)
 
 ## Introduction
 
-The following data was obtained from the NCAA’s website of the College Men’s Basketball Standings for the 2024-2025 season (https://www.ncaa.com/standings/basketball-men/d1). The data used in this project was acquired in an ethical and friendly manner. We used the polite package to table scrape in a respectful manner, and we checked before scraping to ensure that the website allows scraping. We did not scrape any personal or confidential information from this site, and we did not overload the server while scraping.
+The following data was obtained from the NCAA’s website of the College Men’s Basketball Standings for the [2024-2025 season](https://www.ncaa.com/standings/basketball-men/d1). The data used in this project was acquired in an ethical and friendly manner. We used the polite package to table scrape in a respectful manner, and we checked before scraping to ensure that the website allows scraping. We did not scrape any personal or confidential information from this site, and we did not overload the server while scraping.
 
-The motivation behind this project stems from March Madness currently taking place. However, on a deeper level, we wish to understand the overall and conference differences in play for the NCAA College Men’s Basketball teams. To narrow our search down to have a more specialized look, we narrowed our focus down to the top five conferences that have won the most championships. However, due to the recent change of the PAC-12 being disbanded, with the most championships titles of 15, there are only four conferences present. This ranking of the championship title by conference was provided by ESPN (https://www.espn.com/mens-college-basketball/story/\_/id/39862064/which-ncaa-mens-conference-most-basketball-titles).
+The motivation behind this project stems from March Madness currently taking place. However, on a deeper level, we wish to understand the overall and conference differences in play for the NCAA College Men’s Basketball teams. To narrow our search down to have a more specialized look, we narrowed our focus down to the top five conferences that have won the most championships. However, due to the recent change of the PAC-12 being disbanded, with the most championships titles of 15, there are only four conferences present. This ranking of the championship title by conference was provided by [ESPN](https://www.espn.com/mens-college-basketball/story/\_/id/39862064/which-ncaa-mens-conference-most-basketball-titles).
 
 There are a few questions that must be asked to investigate our main motivation. What is the relationship between conference performance and overall performance? How does conference play affect a team’s overall performance? What factors play into playing the outcome of conference and non-conference games? Is there a way to predict the NCAA championship tournament winner based off of their performances in overall and conference as well as accounting for the factors of past conference champions?
 

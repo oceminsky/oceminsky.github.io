@@ -1,5 +1,5 @@
 ---
-title: "Mini Project 1"
+title: "Interactive Chloropleth Maps"
 sidebar: false
 format:
   html: 
@@ -25,7 +25,7 @@ states_sf <- read_sf("https://rstudio.github.io/leaflet/json/us-states.geojson")
 ```
 ## Introduction
 
-The data used for this project comes from the Center for Disease Control (CDC) and the National Center for Health Statistics (NCHS). It can be accessed at this link (https://healthdata.gov/d/nxxk-8p52).
+The data used for this project comes from the Center for Disease Control (CDC) and the National Center for Health Statistics (NCHS). It can be accessed at this [link](https://healthdata.gov/d/nxxk-8p52).
 
 **Preparing datasets for joining**
 

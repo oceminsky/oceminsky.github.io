@@ -8,7 +8,7 @@
 
 <meta name="author" content="Olivia Ceminsky and Rachael Olson">
 
-<title>Mini Project 2 – Olivia Ceminsky</title>
+<title>Table Scraping Acquisition – Olivia Ceminsky</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,15 +135,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./mini_project1_ceminsky.html"> 
-<span class="menu-text">Mini Project 1</span></a>
+<span class="menu-text">Interactive Chloropleth Maps</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./miniproject2.html" aria-current="page"> 
-<span class="menu-text">Mini Project 2</span></a>
+<span class="menu-text">Table Scraping Acquisition</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
 <span class="menu-text">Research</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/oceminsky/oceminsky.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -176,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mini Project 2</h1>
+<h1 class="title">Table Scraping Acquisition</h1>
 </div>
 
 
@@ -201,8 +208,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The following data was obtained from the NCAA’s website of the College Men’s Basketball Standings for the 2024-2025 season (https://www.ncaa.com/standings/basketball-men/d1). The data used in this project was acquired in an ethical and friendly manner. We used the polite package to table scrape in a respectful manner, and we checked before scraping to ensure that the website allows scraping. We did not scrape any personal or confidential information from this site, and we did not overload the server while scraping.</p>
-<p>The motivation behind this project stems from March Madness currently taking place. However, on a deeper level, we wish to understand the overall and conference differences in play for the NCAA College Men’s Basketball teams. To narrow our search down to have a more specialized look, we narrowed our focus down to the top five conferences that have won the most championships. However, due to the recent change of the PAC-12 being disbanded, with the most championships titles of 15, there are only four conferences present. This ranking of the championship title by conference was provided by ESPN (https://www.espn.com/mens-college-basketball/story/_/id/39862064/which-ncaa-mens-conference-most-basketball-titles).</p>
+<p>The following data was obtained from the NCAA’s website of the College Men’s Basketball Standings for the <a href="https://www.ncaa.com/standings/basketball-men/d1">2024-2025 season</a>. The data used in this project was acquired in an ethical and friendly manner. We used the polite package to table scrape in a respectful manner, and we checked before scraping to ensure that the website allows scraping. We did not scrape any personal or confidential information from this site, and we did not overload the server while scraping.</p>
+<p>The motivation behind this project stems from March Madness currently taking place. However, on a deeper level, we wish to understand the overall and conference differences in play for the NCAA College Men’s Basketball teams. To narrow our search down to have a more specialized look, we narrowed our focus down to the top five conferences that have won the most championships. However, due to the recent change of the PAC-12 being disbanded, with the most championships titles of 15, there are only four conferences present. This ranking of the championship title by conference was provided by <a href="https://www.espn.com/mens-college-basketball/story/_/id/39862064/which-ncaa-mens-conference-most-basketball-titles">ESPN</a>.</p>
 <p>There are a few questions that must be asked to investigate our main motivation. What is the relationship between conference performance and overall performance? How does conference play affect a team’s overall performance? What factors play into playing the outcome of conference and non-conference games? Is there a way to predict the NCAA championship tournament winner based off of their performances in overall and conference as well as accounting for the factors of past conference champions?</p>
 <p>After accounting for the data being collected and tidied, there are several ways we would like to use this table to help begin to answer those questions. To start, we could demonstrate some simple analysis through plots as well as some statistical skills. These skills could include joining with another data set, checking correlations, and p-values. All of these things could help us to make a prediction for a potential March Madness winner based on the data found. These are just a few ways in which evaluating overall and conference performance could influence the conclusions we base off of the insights received.</p>
 </section>
