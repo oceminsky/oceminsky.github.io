@@ -9,7 +9,7 @@ editor_options:
 ---
                 
 ## Introduction
-I've always had an interest in current events, and growing up, I read the newspaper every morning. As an International Relations concentrator, I continue to be interested in events occurring around the world. I decided to work with the New York Times dataset for this project because I am interested how different international events and countries have been portrayed in the media in the past, and how the overall sentiment toward these countries and events has changed. I hope to explore how certain events, both domestically and internationally, have changed the sentiment or number of articles written on certain topics. The data for this project comes from the NYTimes dataset included in the RTextTools package. The dataset consists of the headlines of front-page NYTimes articles from 1996 to 2006. 
+I've always had an interest in current events, and growing up, I read the newspaper every morning. As an International Relations concentrator, I continue to be interested in events occurring around the world. I decided to work with the New York Times dataset for this project because I am interested in how different international events and countries have been portrayed in the media in the past, and how the overall sentiment toward these countries and events has changed. I hope to explore how certain events, both domestically and internationally, have changed the sentiment or number of articles written on certain topics. The data for this project comes from the NYTimes dataset included in the RTextTools package. The dataset consists of the headlines of front-page NYTimes articles from 1996 to 2006. 
 
 ```{r}
 #| include: FALSE
@@ -61,9 +61,11 @@ times_wordcloud <- tidy_times |>
 )
 
 ```
-Based on this wordcloud, common topics that frequently appear in the headlines concern domestic politics, the economy, elections, and international conflicts and relations. Oftentimes, the context of these headlines are negative. When examining the overall sentiment of articles for every week from 1996 to 2006, the sentiment is overwhelming negative, with very few weeks across both decades displaying an overall positive sentiment. 
+Based on this wordcloud, common topics that frequently appear in the headlines concern domestic politics, the economy, elections, and international conflicts and relations. I then decided to explore how the content of these words impacted the sentiment of articles. 
 
 ## Overall Article Sentiment By Week
+
+To look at the overall sentiment of articles, I divided the articles into weekly sections, and then examined the overall sentiment of each of these weeks by decade.
 
 ```{r}
 #loading sentiment data
@@ -79,6 +81,7 @@ tidy_times |>
   mutate(sentiment = positive - negative) |>
   ggplot(aes(x = index, y = sentiment, fill = decade)) +
     geom_col(show.legend = FALSE) +
+    geom_hline(yintercept = 0, color = "black") +
     facet_wrap(~decade, ncol = 2, scales = "free_x") +
     theme_bw() +
     scale_fill_manual(values = c("1990s" = "#0047AB", "2000s" = "maroon")) +
@@ -88,10 +91,12 @@ tidy_times |>
       y = "Sentiment"
     )
 ```
+Oftentimes, the context of these headlines are negative. When examining the overall sentiment of articles for every week from 1996 to 2006, the sentiment is overwhelming negative, with very few weeks across both decades displaying an overall positive sentiment. 
+
+## Prevalence of Different IR Subjects Across Time
 
 Considering my interest in International Relations, I decided to examine the prevalence of different countries in the news across time. For this analysis, I chose to focus on China, Iraq, and Russia, which are countries that are commonly discussed in International Relations and have been important to foreign affairs in recent decades. 
 
-## Prevalence of different IR subjects across time
 ```{r}
 #creating count of different subjects plot
 nytimes |>
@@ -117,10 +122,12 @@ nytimes |>
     )
 ```
 
-Based on this visualization, the majority of stories have been written about Iraq during this time period, with a large spike in 2002 and 2003, correlating with the beginning of the Iraq war. More stories were written about Russia and China in the late 19990s compared to Iraq, but the number of these stories tapered off with the start of the Iraq war.
+Based on this visualization, the majority of stories have been written about Iraq during this time period, with a large spike in 2002 and 2003, correlating with the beginning of the Iraq war. More stories were written about Russia and China in the late 1990s compared to Iraq, but the number of these stories tapered off with the start of the Iraq war.
+
+## Correlated Topics with IR Subjects
+
 Expanding the number of states examined to also include Afghanistan, the Balkans, and the U.S., I wanted to look into the words most correlated with these countries in order to learn what topics were commonly written about when these countries were in the news. 
 
-## Correlated topics with IR subjects
 ```{r}
 nytimes$Title <- as.character(nytimes$Title)
 
@@ -156,11 +163,12 @@ word_cors |>
          )
 ```
 
-Based on these correlations, it appears that news stories about China and Russia were more likely to be about economic issues, while those about Afghanistan, Iraq, and the Balkans referred to the conflicts occurring in these countries during this time period. It is particularly interesting that the word "crisis" has such an extremely strong correlation to the Balkans in comparison to all the other words. 
+Based on these correlations, it appears that news stories about China and Russia were more likely to be about economic issues, which makes sense considering the growth of China's economy and Russia's economic transition following the collapse of the USSR occurring during this time period. On the other hand, those about Afghanistan, Iraq, and the Balkans referred to the conflicts occurring in these countries during this time period. Both the Afghanistan and Iraq wars began in the early 2000s, and the Balkans was recovering from the collapse of the former Yugoslavia in the 1990s. It is particularly interesting that the word "crisis" has such an extremely strong correlation (0.6) to the Balkans in comparison to all the other words. 
+
+## Sentiments Associated with Different IR Subjects
 
 Beyond just the words most correlated with these countries, I was interested in looking at the sentiment of the articles written about these countries. 
 
-## Sentiments Associated with Different IR Subjects
 ```{r}
 #joining times data with bing sentiments
 bing_word_counts <- tidy_times |>
@@ -185,7 +193,7 @@ bing_word_counts |>
          fill = "Sentiment")
 
 ```
-Based on this plot, the sentiment of articles concerning International Relations subjects are generally negative. This is particularly true of Russia and China, in which the proportion of negative articles written about these countries is 1. Surprisingly, Iraq had the most positive sentiment of associated articles, with almost half of all articles having a more positive sentiment.
+Based on this plot, the sentiment of articles concerning International Relations subjects are generally negative. This is particularly true of Russia and China, in which the proportion of negative articles written about these countries is 1. Surprisingly, Iraq had the most positive sentiment of associated articles, with almost half of all articles having a more positive sentiment, even though the Iraq war was happening at this time.
 
 ## Conclusion
 

@@ -180,10 +180,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#common-words-and-sentiments-in-nytimes-articles" id="toc-common-words-and-sentiments-in-nytimes-articles" class="nav-link" data-scroll-target="#common-words-and-sentiments-in-nytimes-articles">Common Words and Sentiments in NYTimes Articles</a></li>
-  <li><a href="#wordcloud" id="toc-wordcloud" class="nav-link" data-scroll-target="#wordcloud">WordCloud</a></li>
   <li><a href="#overall-article-sentiment-by-week" id="toc-overall-article-sentiment-by-week" class="nav-link" data-scroll-target="#overall-article-sentiment-by-week">Overall Article Sentiment By Week</a></li>
-  <li><a href="#prevalence-of-different-ir-subjects-across-time" id="toc-prevalence-of-different-ir-subjects-across-time" class="nav-link" data-scroll-target="#prevalence-of-different-ir-subjects-across-time">Prevalence of different IR subjects across time</a></li>
-  <li><a href="#correlated-topics-with-ir-subjects" id="toc-correlated-topics-with-ir-subjects" class="nav-link" data-scroll-target="#correlated-topics-with-ir-subjects">Correlated topics with IR subjects</a></li>
+  <li><a href="#prevalence-of-different-ir-subjects-across-time" id="toc-prevalence-of-different-ir-subjects-across-time" class="nav-link" data-scroll-target="#prevalence-of-different-ir-subjects-across-time">Prevalence of Different IR Subjects Across Time</a></li>
+  <li><a href="#correlated-topics-with-ir-subjects" id="toc-correlated-topics-with-ir-subjects" class="nav-link" data-scroll-target="#correlated-topics-with-ir-subjects">Correlated Topics with IR Subjects</a></li>
   <li><a href="#sentiments-associated-with-different-ir-subjects" id="toc-sentiments-associated-with-different-ir-subjects" class="nav-link" data-scroll-target="#sentiments-associated-with-different-ir-subjects">Sentiments Associated with Different IR Subjects</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -213,14 +212,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>I’ve always had an interest in current events, and growing up, I read the newspaper every morning. As an International Relations concentrator, I continue to be interested in events occurring around the world. I decided to work with the New York Times dataset for this project because I am interested how different international events and countries have been portrayed in the media in the past, and how the overall sentiment toward these countries and events has changed. I hope to explore how certain events, both domestically and internationally, have changed the sentiment or number of articles written on certain topics. The data for this project comes from the NYTimes dataset included in the RTextTools package. The dataset consists of the headlines of front-page NYTimes articles from 1996 to 2006.</p>
+<p>I’ve always had an interest in current events, and growing up, I read the newspaper every morning. As an International Relations concentrator, I continue to be interested in events occurring around the world. I decided to work with the New York Times dataset for this project because I am interested in how different international events and countries have been portrayed in the media in the past, and how the overall sentiment toward these countries and events has changed. I hope to explore how certain events, both domestically and internationally, have changed the sentiment or number of articles written on certain topics. The data for this project comes from the NYTimes dataset included in the RTextTools package. The dataset consists of the headlines of front-page NYTimes articles from 1996 to 2006.</p>
 </section>
 <section id="common-words-and-sentiments-in-nytimes-articles" class="level2">
 <h2 class="anchored" data-anchor-id="common-words-and-sentiments-in-nytimes-articles">Common Words and Sentiments in NYTimes Articles</h2>
 <p>To begin my analysis, I started by making a wordcloud of the New York Times articles to see which topics continually reappeared in the headlines.</p>
-</section>
-<section id="wordcloud" class="level2">
-<h2 class="anchored" data-anchor-id="wordcloud">WordCloud</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tidying data </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tidy_times <span class="ot">&lt;-</span> nytimes <span class="sc">|&gt;</span></span>
@@ -248,14 +244,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">'random-dark'</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-73ea04aa682e00c400d0" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-73ea04aa682e00c400d0">{"x":{"word":["u.s","bush","iraq","war","overview","nation","campaign","president","plan","report","clinton","special","york","g.o.p","challenged","city","house","court","politics","china","race","aid","bill","senate","vote","battle","deal","democrats","israel","leader","set","terror","iraqi","schools","talks","crisis","drug","seeks","inquiry","death","power","time","u.n","attack","attacks","dead","fight","chief","day","home","rules","testing","threats","top","news","baghdad","balkans","budget","care","dole","military","world","police","security","billion","bombing","money","pay","policy","responses","town","cut","debate","election","fire","health","iraqis","law","panel","party"],"freq":[261,116,99,83,80,67,65,65,59,59,54,52,52,51,48,48,48,43,41,40,38,37,37,37,37,35,34,33,32,32,32,31,29,29,29,28,28,28,27,26,26,26,26,25,25,25,25,24,24,24,24,24,24,24,23,22,22,22,22,22,22,22,21,21,20,20,20,20,20,20,20,19,19,19,19,19,19,19,19,19],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":3,"weightFactor":0.6896551724137931,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-731cf6959046ce66635e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-731cf6959046ce66635e">{"x":{"word":["u.s","bush","iraq","war","overview","nation","campaign","president","plan","report","clinton","special","york","g.o.p","challenged","city","house","court","politics","china","race","aid","bill","senate","vote","battle","deal","democrats","israel","leader","set","terror","iraqi","schools","talks","crisis","drug","seeks","inquiry","death","power","time","u.n","attack","attacks","dead","fight","chief","day","home","rules","testing","threats","top","news","baghdad","balkans","budget","care","dole","military","world","police","security","billion","bombing","money","pay","policy","responses","town","cut","debate","election","fire","health","iraqis","law","panel","party"],"freq":[261,116,99,83,80,67,65,65,59,59,54,52,52,51,48,48,48,43,41,40,38,37,37,37,37,35,34,33,32,32,32,31,29,29,29,28,28,28,27,26,26,26,26,25,25,25,25,24,24,24,24,24,24,24,23,22,22,22,22,22,22,22,21,21,20,20,20,20,20,20,20,19,19,19,19,19,19,19,19,19],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":3,"weightFactor":0.6896551724137931,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 </div>
-<p>Based on this wordcloud, common topics that frequently appear in the headlines concern domestic politics, the economy, elections, and international conflicts and relations. Oftentimes, the context of these headlines are negative. When examining the overall sentiment of articles for every week from 1996 to 2006, the sentiment is overwhelming negative, with very few weeks across both decades displaying an overall positive sentiment.</p>
+<p>Based on this wordcloud, common topics that frequently appear in the headlines concern domestic politics, the economy, elections, and international conflicts and relations. I then decided to explore how the content of these words impacted the sentiment of articles.</p>
 </section>
 <section id="overall-article-sentiment-by-week" class="level2">
 <h2 class="anchored" data-anchor-id="overall-article-sentiment-by-week">Overall Article Sentiment By Week</h2>
+<p>To look at the overall sentiment of articles, I divided the articles into weekly sections, and then examined the overall sentiment of each of these weeks by decade.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#loading sentiment data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bing_sentiments <span class="ot">&lt;-</span> <span class="fu">get_sentiments</span>(<span class="at">lexicon =</span> <span class="st">"bing"</span>)</span>
@@ -270,14 +267,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sentiment =</span> positive <span class="sc">-</span> negative) <span class="sc">|&gt;</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> index, <span class="at">y =</span> sentiment, <span class="at">fill =</span> decade)) <span class="sc">+</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>decade, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"1990s"</span> <span class="ot">=</span> <span class="st">"#0047AB"</span>, <span class="st">"2000s"</span> <span class="ot">=</span> <span class="st">"maroon"</span>)) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Overall Sentiment of NY Times Articles by Week"</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Week"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Sentiment"</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>decade, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"1990s"</span> <span class="ot">=</span> <span class="st">"#0047AB"</span>, <span class="st">"2000s"</span> <span class="ot">=</span> <span class="st">"maroon"</span>)) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Overall Sentiment of NY Times Articles by Week"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Week"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Sentiment"</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(word)`</code></pre>
 </div>
@@ -289,10 +287,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Considering my interest in International Relations, I decided to examine the prevalence of different countries in the news across time. For this analysis, I chose to focus on China, Iraq, and Russia, which are countries that are commonly discussed in International Relations and have been important to foreign affairs in recent decades.</p>
+<p>Oftentimes, the context of these headlines are negative. When examining the overall sentiment of articles for every week from 1996 to 2006, the sentiment is overwhelming negative, with very few weeks across both decades displaying an overall positive sentiment.</p>
 </section>
 <section id="prevalence-of-different-ir-subjects-across-time" class="level2">
-<h2 class="anchored" data-anchor-id="prevalence-of-different-ir-subjects-across-time">Prevalence of different IR subjects across time</h2>
+<h2 class="anchored" data-anchor-id="prevalence-of-different-ir-subjects-across-time">Prevalence of Different IR Subjects Across Time</h2>
+<p>Considering my interest in International Relations, I decided to examine the prevalence of different countries in the news across time. For this analysis, I chose to focus on China, Iraq, and Russia, which are countries that are commonly discussed in International Relations and have been important to foreign affairs in recent decades.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating count of different subjects plot</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>nytimes <span class="sc">|&gt;</span></span>
@@ -324,10 +323,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Based on this visualization, the majority of stories have been written about Iraq during this time period, with a large spike in 2002 and 2003, correlating with the beginning of the Iraq war. More stories were written about Russia and China in the late 19990s compared to Iraq, but the number of these stories tapered off with the start of the Iraq war. Expanding the number of states examined to also include Afghanistan, the Balkans, and the U.S., I wanted to look into the words most correlated with these countries in order to learn what topics were commonly written about when these countries were in the news.</p>
+<p>Based on this visualization, the majority of stories have been written about Iraq during this time period, with a large spike in 2002 and 2003, correlating with the beginning of the Iraq war. More stories were written about Russia and China in the late 1990s compared to Iraq, but the number of these stories tapered off with the start of the Iraq war.</p>
 </section>
 <section id="correlated-topics-with-ir-subjects" class="level2">
-<h2 class="anchored" data-anchor-id="correlated-topics-with-ir-subjects">Correlated topics with IR subjects</h2>
+<h2 class="anchored" data-anchor-id="correlated-topics-with-ir-subjects">Correlated Topics with IR Subjects</h2>
+<p>Expanding the number of states examined to also include Afghanistan, the Balkans, and the U.S., I wanted to look into the words most correlated with these countries in order to learn what topics were commonly written about when these countries were in the news.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nytimes<span class="sc">$</span>Title <span class="ot">&lt;-</span> <span class="fu">as.character</span>(nytimes<span class="sc">$</span>Title)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -369,11 +369,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Based on these correlations, it appears that news stories about China and Russia were more likely to be about economic issues, while those about Afghanistan, Iraq, and the Balkans referred to the conflicts occurring in these countries during this time period. It is particularly interesting that the word “crisis” has such an extremely strong correlation to the Balkans in comparison to all the other words.</p>
-<p>Beyond just the words most correlated with these countries, I was interested in looking at the sentiment of the articles written about these countries.</p>
+<p>Based on these correlations, it appears that news stories about China and Russia were more likely to be about economic issues, which makes sense considering the growth of China’s economy and Russia’s economic transition following the collapse of the USSR occurring during this time period. On the other hand, those about Afghanistan, Iraq, and the Balkans referred to the conflicts occurring in these countries during this time period. Both the Afghanistan and Iraq wars began in the early 2000s, and the Balkans was recovering from the collapse of the former Yugoslavia in the 1990s. It is particularly interesting that the word “crisis” has such an extremely strong correlation (0.6) to the Balkans in comparison to all the other words.</p>
 </section>
 <section id="sentiments-associated-with-different-ir-subjects" class="level2">
 <h2 class="anchored" data-anchor-id="sentiments-associated-with-different-ir-subjects">Sentiments Associated with Different IR Subjects</h2>
+<p>Beyond just the words most correlated with these countries, I was interested in looking at the sentiment of the articles written about these countries.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#joining times data with bing sentiments</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bing_word_counts <span class="ot">&lt;-</span> tidy_times <span class="sc">|&gt;</span></span>
@@ -406,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Based on this plot, the sentiment of articles concerning International Relations subjects are generally negative. This is particularly true of Russia and China, in which the proportion of negative articles written about these countries is 1. Surprisingly, Iraq had the most positive sentiment of associated articles, with almost half of all articles having a more positive sentiment.</p>
+<p>Based on this plot, the sentiment of articles concerning International Relations subjects are generally negative. This is particularly true of Russia and China, in which the proportion of negative articles written about these countries is 1. Surprisingly, Iraq had the most positive sentiment of associated articles, with almost half of all articles having a more positive sentiment, even though the Iraq war was happening at this time.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
